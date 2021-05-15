@@ -1,7 +1,8 @@
-﻿using ReactiveUI;
+﻿using System;
+using System.Reactive.Linq;
+using ReactiveUI;
 using ToDoAvalonia.NETCoreAvalonia.Services;
-
-using ToDoAvalonia.NETCoreAvalonia.Services;
+using ToDoAvalonia.NETCoreAvalonia.Models;
 
 namespace ToDoAvalonia.NETCoreAvalonia.ViewModels
 {
@@ -24,7 +25,23 @@ namespace ToDoAvalonia.NETCoreAvalonia.ViewModels
 
         public void AddItem()
         {
-            Content = new AddItemViewModel();
+            var vm = new AddItemViewModel();
+
+            Observable.Merge(
+                    vm.Ok,
+                    vm.Cancel.Select(_ => (TodoItem) null))
+                .Take(1)
+                .Subscribe(model =>
+                {
+                    if (model != null)
+                    {
+                        List.Item.Add(model);
+                    }
+
+                    Content = List;
+                });
+
+            Content = vm;
         }
     }
 }
