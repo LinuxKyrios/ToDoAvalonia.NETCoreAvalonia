@@ -8,7 +8,7 @@ namespace ToDoAvalonia.NETCoreAvalonia.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private ViewModelBase content;
+        ViewModelBase content;
 
         public MainWindowViewModel(Database db)
         {
@@ -20,8 +20,9 @@ namespace ToDoAvalonia.NETCoreAvalonia.ViewModels
             get => content;
             private set => this.RaiseAndSetIfChanged(ref content, value);
         }
-        
+
         public TodoListViewModel List { get; }
+
 
         public void AddItem()
         {
