@@ -22,7 +22,7 @@ namespace ToDoAvalonia.NETCoreAvalonia
             {
                 var db = new Database();
 
-                desktop.MainWindow = new MainWindow()
+                desktop.MainWindow = new MainWindow
                 {
                     DataContext = new MainWindowViewModel(db),
                 };
