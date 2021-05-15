@@ -6,11 +6,14 @@
              x:Class="Todo.Views.TodoListView">
     <DockPanel>
         <Button DockPanel.Dock="Bottom">Add new stack</Button>
-        <StackPanel>
-            <CheckBox Margin="4">ASP.NET</CheckBox>
-            <CheckBox Margin="4">ASP.NET Core</CheckBox>
-            <CheckBox Margin="4">Vue</CheckBox>
-            <CheckBox Margin="4">Angular</CheckBox>
-        </StackPanel>
+        <ItemsControl Items="{Binding Item}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Margin="4"
+                              IsChecked="{Binding IsChecked}"
+                              Content="{Binding Description}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </DockPanel>
 </UserControl>
